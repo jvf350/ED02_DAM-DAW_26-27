@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_07_ContarAprobados
+ * ED02_07_ContarAprobados  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Comprobar los casos límite: qué pasa justo en la frontera de una
@@ -12,20 +12,21 @@ package ed02_ejemplos_depuracion;
  *    Con las notas del programa hay 4 aprobados de 6.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y anota el resultado.
+ *    Muestra "Aprobados: 2 de 6".
  *
  * 3. HIPÓTESIS
- *    ¿Qué notas crees que no está contando?
+ *    No cuenta los 5.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo dentro del bucle, en la línea del if, y avanza con F8.
+ *    En el if de dentro del bucle.
  *
  * 5. ¿QUÉ OBSERVO?
- *    Cuando "nota" vale 5.0, ¿entra en el if? ¿Por qué?
- *    Prueba a cambiar con F2 el valor de "nota" a 4.99 y a 5.01.
+ *    Con nota = 5.0 la condición nota > 5 es false: no entra en el if.
+ *    Con 4.99 no entra (correcto) y con 5.01 sí (correcto). El fallo está
+ *    justo en la frontera.
  *
  * 6. CORRECCIÓN
- *    ¿Qué operador de comparación debe usarse?
+ *    Usar >= en lugar de >:  if (nota >= 5)
  *
  * @author jm
  */
@@ -37,7 +38,7 @@ public class ED02_07_ContarAprobados {
         int aprobados = 0;
 
         for (double nota : notas) {
-            if (nota > 5) {
+            if (nota >= 5) {
                 aprobados++;
             }
         }

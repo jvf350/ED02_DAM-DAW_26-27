@@ -1,4 +1,8 @@
 # ED02 · Depuración de código en Java
+
+> **Rama `soluciones`**: aquí están los programas corregidos y, en el
+> comentario de cada uno, los seis pasos contestados.
+
 Programas Java sencillos **con errores** para aprender a depurar código
 con el depurador de IntelliJ IDEA.
 

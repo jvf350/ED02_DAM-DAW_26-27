@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_08_Multiplos
+ * ED02_08_Multiplos  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Evaluar expresiones mientras el programa está parado (Alt+F8),
@@ -13,23 +13,21 @@ package ed02_ejemplos_depuracion;
  *    Por ejemplo: 2, 3, 4 y 6 son múltiplos de 2 o de 3.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo. ¿Qué números están mal clasificados?
+ *    Dice que 2, 3, 4, 8 y 9 no son múltiplos de 2, 3 ni 5.
+ *    Solo 0 y 6 aparecen como múltiplos de 2 o de 3.
  *
  * 3. HIPÓTESIS
- *    ¿Qué parte de la primera condición crees que falla?
+ *    La condición exige que sea múltiplo de 2 Y de 3 a la vez.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en el primer if. Avanza con F9 hasta que "i" valga 2
- *    y evalúa con Alt+F8, por separado:
- *       i % 2 == 0
- *       i % 3 == 0
- *       i % 2 == 0 && i % 3 == 0
+ *    En el primer if, con i = 2.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué devuelve cada expresión? ¿Coincide con lo que dice el mensaje?
+ *    i % 2 == 0 -> true;  i % 3 == 0 -> false;  con && -> false.
+ *    El mensaje dice "o", pero el código usa "&&" (y).
  *
  * 6. CORRECCIÓN
- *    ¿Qué operador lógico debe usarse?
+ *    Usar || :  if (i % 2 == 0 || i % 3 == 0)
  *
  * @author jm
  */
@@ -40,7 +38,7 @@ public class ED02_08_Multiplos {
         int i = 0;
 
         while (i < 10) {
-            if (i % 2 == 0 && i % 3 == 0) {
+            if (i % 2 == 0 || i % 3 == 0) {
                 System.out.println(i + " es múltiplo de 2 o de 3");
             } else if (i % 5 == 0) {
                 System.out.println(i + " es múltiplo de 5");

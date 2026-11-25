@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_12_PotenciasDeDos
+ * ED02_12_PotenciasDeDos  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Puntos de interrupción condicionales: que el programa solo se pare
@@ -12,22 +12,22 @@ package ed02_ejemplos_depuracion;
  *    Cada número es el doble del anterior.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y revisa la salida entera. ¿Son todos correctos?
+ *    Va bien hasta 1073741824; luego muestra -2147483648 y después ceros.
  *
  * 3. HIPÓTESIS
- *    ¿Por qué aparece un número negativo y luego ceros?
+ *    El número se hace demasiado grande para un int.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea de numero = numero * 2. Haz clic derecho
- *    sobre el punto rojo y escribe en "Condition":  vueltas == 29
- *    Otra opción: ponlo en el println con la condición  numero < 0
+ *    En numero = numero * 2, con la condición vueltas == 29.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué valor tiene "numero" justo antes y justo después de multiplicar?
- *    Evalúa (Alt+F8) Integer.MAX_VALUE. ¿Qué tiene que ver?
+ *    Antes de multiplicar numero = 1073741824; después -2147483648.
+ *    Integer.MAX_VALUE es 2147483647: el doble no cabe en un int y el valor
+ *    "da la vuelta" a los negativos (desbordamiento). No salta ningún error.
  *
  * 6. CORRECCIÓN
- *    ¿Qué tipo de dato admite números más grandes que int?
+ *    Usar long, que admite números hasta 9223372036854775807:
+ *    long numero = 2;
  *
  * @author jm
  */
@@ -35,7 +35,7 @@ public class ED02_12_PotenciasDeDos {
 
     public static void main(String[] args) {
 
-        int numero = 2;
+        long numero = 2;
         int vueltas = 0;
 
         do {

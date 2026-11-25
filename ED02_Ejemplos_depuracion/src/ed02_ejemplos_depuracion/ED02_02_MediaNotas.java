@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_02_MediaNotas
+ * ED02_02_MediaNotas  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Seguir el valor de una variable dentro de un bucle con F8
@@ -11,21 +11,22 @@ package ed02_ejemplos_depuracion;
  *    Calcular la nota media de 7, 4, 8 y 6. El resultado correcto es 6.25.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y anota lo que muestra.
+ *    Muestra "La media es: 1.0".
  *
  * 3. HIPÓTESIS
- *    ¿Qué crees que falla: la suma, la división o las dos?
+ *    La suma no acumula las notas y la división pierde los decimales.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea 41 (suma = notas[i];) y avanza con F8.
- *    Cuando termine el bucle, pon otro en la línea 43 (media = ...).
+ *    En "suma = ..." dentro del bucle y en la línea "media = ...".
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué valor tiene "suma" en cada vuelta? ¿Y al salir del bucle?
- *    ¿Qué valor toma "media" después de la línea 43?
+ *    "suma" vale 7, 4, 8 y 6: en cada vuelta se SUSTITUYE en vez de sumarse.
+ *    Al salir del bucle suma = 6 y media = 6 / 4 = 1.0: al dividir dos int
+ *    el resultado es entero (1) aunque luego se guarde en un double.
  *
  * 6. CORRECCIÓN
- *    ¿Qué cambias en cada una de las dos líneas?
+ *    suma = suma + notas[i];                  (acumular)
+ *    media = (double) suma / notas.length;    (división con decimales)
  *
  * @author jm
  */
@@ -38,9 +39,9 @@ public class ED02_02_MediaNotas {
         double media;
 
         for (int i = 0; i < notas.length; i++) {
-            suma = notas[i];
+            suma = suma + notas[i];
         }
-        media = suma / notas.length;
+        media = (double) suma / notas.length;
 
         System.out.println("La media es: " + media);
     }

@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_10_TemperaturaMaxima
+ * ED02_10_TemperaturaMaxima  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Usar Watches: expresiones que se vigilan en todo momento.
@@ -14,20 +14,22 @@ package ed02_ejemplos_depuracion;
  *    Mostrar la temperatura más alta de las mañanas de invierno: -1.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo. ¿El resultado está entre las temperaturas del array?
+ *    Muestra 0, que no es ninguna de las temperaturas.
  *
  * 3. HIPÓTESIS
- *    ¿De dónde sale ese valor?
+ *    El 0 es el valor inicial de "maxima", que nunca se cambia.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en el if de dentro del bucle y añade los watches.
+ *    En el if de dentro del bucle, con los watches.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Entra alguna vez en el if? ¿Por qué?
- *    ¿Funcionaría con temperaturas positivas? Pruébalo cambiando valores.
+ *    temperaturas[i] > maxima es false en todas las vueltas: ninguna
+ *    temperatura negativa es mayor que 0. Con temperaturas positivas sí
+ *    funcionaría, por eso es importante probar varios casos.
  *
  * 6. CORRECCIÓN
- *    ¿Con qué valor debe empezar "maxima" para que funcione siempre?
+ *    Empezar con el primer elemento del array:
+ *    int maxima = temperaturas[0];
  *
  * @author jm
  */
@@ -36,7 +38,7 @@ public class ED02_10_TemperaturaMaxima {
     public static void main(String[] args) {
 
         int[] temperaturas = {-3, -7, -1, -5};
-        int maxima = 0;
+        int maxima = temperaturas[0];
 
         for (int i = 0; i < temperaturas.length; i++) {
             if (temperaturas[i] > maxima) {

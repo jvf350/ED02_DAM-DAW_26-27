@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_18_ContarBEntreA
+ * ED02_18_ContarBEntreA  ·  SOLUCIÓN
  *
  * RETO FINAL: usa todo lo que has aprendido (puntos de interrupción,
  * F8, panel Variables, watches y Alt+F8). Este programa tiene DOS errores.
@@ -16,22 +16,22 @@ package ed02_ejemplos_depuracion;
  *       ababab     -> 2
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y compara con los resultados correctos.
+ *    Muestra 0 para todos los textos.
  *
  * 3. HIPÓTESIS
- *    ¿Qué variable recorre los textos y cuál recorre las letras?
+ *    "i" recorre los textos y "j" las letras, pero se compara con charAt(i).
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en el primer if del bucle interior. Añade watches con
- *    i, j, linea.charAt(j), hayA, contador y total.
+ *    En el primer if del bucle interior, con los watches.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué letra se está comparando en cada vuelta? ¿Es la que toca?
- *    Cuando corrijas el primer error, prueba con "bbba": ¿con qué valor
- *    empieza "hayA"? ¿Debería valer eso si todavía no ha aparecido una "a"?
+ *    linea.charAt(i) siempre compara la misma letra durante todo el texto
+ *    (la posición del texto, no la de la letra). Tras cambiarlo a
+ *    charAt(j), "bbba" da 3 en vez de 0: "hayA" empieza en true, así que
+ *    cuenta las "b" del principio aunque aún no haya aparecido ninguna "a".
  *
  * 6. CORRECCIÓN
- *    ¿Qué dos cosas cambias?
+ *    if (linea.charAt(j) == 'a')   y   hayA = false;  al empezar cada texto.
  *
  * @author jm
  */
@@ -46,12 +46,12 @@ public class ED02_18_ContarBEntreA {
 
         for (int i = 0; i < lineas.length; i++) {
             String linea = lineas[i];
-            hayA = true;
+            hayA = false;
             contador = 0;
             total = 0;
 
             for (int j = 0; j < linea.length(); j++) {
-                if (linea.charAt(i) == 'a') {
+                if (linea.charAt(j) == 'a') {
                     if (hayA && contador != 0) {
                         total = total + contador;
                         contador = 0;

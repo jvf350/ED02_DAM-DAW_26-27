@@ -3,7 +3,7 @@ package ed02_ejemplos_depuracion;
 import java.util.Scanner;
 
 /**
- * ED02_05_NombreAlReves
+ * ED02_05_NombreAlReves  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Seguir un bucle que recorre un String carácter a carácter.
@@ -15,20 +15,23 @@ import java.util.Scanner;
  *    Por ejemplo, con "Ana" debería mostrar "anA".
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo con tu nombre y anota lo que muestra y el error que aparece.
+ *    Con "Ana" muestra "Ana" (no al revés) y después lanza
+ *    StringIndexOutOfBoundsException: "Index 3 out of bounds for length 3".
  *
  * 3. HIPÓTESIS
- *    ¿En qué orden recorre el bucle el nombre? ¿Hasta qué posición llega?
+ *    El bucle va del principio al final, y además se pasa de largo.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea 48 (System.out.print(nombre.charAt(i));).
+ *    En System.out.print(nombre.charAt(i)); dentro del for.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué valores toma "i" en cada vuelta? ¿Cuánto vale nombre.length()?
- *    ¿Qué valor tiene "i" justo cuando salta el error?
+ *    "i" toma los valores 0, 1, 2 y 3. nombre.length() vale 3, así que
+ *    las posiciones válidas son 0, 1 y 2: con i = 3 salta el error
+ *    (por el "<="). Además, al ir de 0 hacia arriba lo muestra en orden.
  *
  * 6. CORRECCIÓN
- *    ¿Desde dónde y hasta dónde debe ir "i"? ¿Debe aumentar o disminuir?
+ *    Recorrerlo desde la última posición hasta la 0, restando:
+ *    for (int i = nombre.length() - 1; i >= 0; i--)
  *
  * @author jm
  */
@@ -44,7 +47,7 @@ public class ED02_05_NombreAlReves {
         System.out.println("Hola, " + nombre + "!");
 
         System.out.print("Tu nombre al revés es: ");
-        for (int i = 0; i <= nombre.length(); i++) {
+        for (int i = nombre.length() - 1; i >= 0; i--) {
             System.out.print(nombre.charAt(i));
         }
         System.out.println();

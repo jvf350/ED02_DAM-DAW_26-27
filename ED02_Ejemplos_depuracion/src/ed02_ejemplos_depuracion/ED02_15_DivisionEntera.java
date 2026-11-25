@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_15_DivisionEntera
+ * ED02_15_DivisionEntera  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Puntos de interrupción de excepción: el depurador se para justo
@@ -13,24 +13,24 @@ package ed02_ejemplos_depuracion;
  *    decimales. Si el denominador es 0, avisar en lugar de dividir.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y anota el error. ¿Llega a mostrar "DESPUÉS DE LA DIVISIÓN"?
+ *    Muestra "ANTES DE LA DIVISIÓN" y lanza ArithmeticException: / by zero.
+ *    El programa se detiene y no llega a "DESPUÉS DE LA DIVISIÓN".
  *
  * 3. HIPÓTESIS
- *    ¿Qué pasa al dividir un entero entre 0?
+ *    Con números enteros no se puede dividir entre 0.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: esta vez no lo pongas en una línea. Abre Run > View Breakpoints
- *    (Ctrl+Shift+F8), pulsa "+" > Java Exception Breakpoints y elige
- *    ArithmeticException. Lanza el depurador (Shift+F9).
- *    Segunda parte: pon un punto de interrupción normal en la línea de la
- *    división y cambia "denominador" a 4 (F2) antes de ejecutarla.
+ *    Un punto de interrupción de excepción para ArithmeticException.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿En qué línea se para? ¿Qué valen numerador y denominador?
- *    Con denominador 4, ¿cuánto vale "division"? ¿Es 2.5?
+ *    Se para en la línea de la división: numerador = 10, denominador = 0.
+ *    Con denominador = 4, "division" vale 2.0 y no 2.5: al dividir dos int
+ *    se pierden los decimales ANTES de guardarlo en el double.
  *
  * 6. CORRECCIÓN
- *    ¿Cómo evitas dividir entre 0? ¿Cómo consigues que 10 / 4 dé 2.5?
+ *    Comprobar el denominador antes de dividir, y convertir uno de los dos
+ *    números a double para conservar los decimales:
+ *    if (denominador != 0) { division = (double) numerador / denominador; ... }
  *
  * @author jm
  */
@@ -44,8 +44,12 @@ public class ED02_15_DivisionEntera {
 
         System.out.println("ANTES DE LA DIVISIÓN");
 
-        division = numerador / denominador;
-        System.out.println("Resultado: " + division);
+        if (denominador != 0) {
+            division = (double) numerador / denominador;
+            System.out.println("Resultado: " + division);
+        } else {
+            System.out.println("No se puede dividir entre 0");
+        }
 
         System.out.println("DESPUÉS DE LA DIVISIÓN");
     }

@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_03_TablaMultiplicar
+ * ED02_03_TablaMultiplicar  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Seguir un bucle paso a paso y detectar un bucle infinito.
@@ -13,20 +13,23 @@ package ed02_ejemplos_depuracion;
  *    Mostrar la tabla de multiplicar del 3, desde 3 x 1 = 3 hasta 3 x 9 = 27.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y anota lo que muestra. (Para pararlo: botón rojo o Ctrl+F2).
+ *    Repite "3 x 1 = 3" sin parar: es un bucle infinito.
  *
  * 3. HIPÓTESIS
- *    ¿Por qué crees que no termina nunca?
+ *    La variable de la condición del while nunca cambia.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea 44 (dentro del do) y pulsa F8 varias veces.
+ *    En la multiplicación de dentro del do, avanzando con F8.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué variables cambian de valor en cada vuelta y cuáles no?
- *    ¿Qué variable se usa en la condición del while?
+ *    z04l32 vale siempre 3, z04532 vale siempre 1 y z04132 siempre 3.
+ *    La condición es z04532 < 10, y como z04532 no aumenta, 1 < 10 es
+ *    siempre cierto. Con estos nombres es muy fácil confundir variables.
  *
  * 6. CORRECCIÓN
- *    ¿Qué línea falta? ¿Qué nombres darías a las variables?
+ *    Falta incrementar el multiplicador al final del bucle. Además se han
+ *    renombrado las variables: z04l32 -> tabla, z04532 -> multiplicador,
+ *    z04132 -> resultado.
  *
  * @author jm
  */
@@ -34,15 +37,14 @@ public class ED02_03_TablaMultiplicar {
 
     public static void main(String[] args) {
 
-        int z04l32 = 3;
-        int z04532;
-        int z04132 = 0;
-
-        z04532 = 1;
+        int tabla = 3;
+        int multiplicador = 1;
+        int resultado;
 
         do {
-            z04132 = z04532 * z04l32;
-            System.out.println(z04l32 + " x " + z04532 + " = " + z04132);
-        } while (z04532 < 10);
+            resultado = multiplicador * tabla;
+            System.out.println(tabla + " x " + multiplicador + " = " + resultado);
+            multiplicador++;
+        } while (multiplicador < 10);
     }
 }

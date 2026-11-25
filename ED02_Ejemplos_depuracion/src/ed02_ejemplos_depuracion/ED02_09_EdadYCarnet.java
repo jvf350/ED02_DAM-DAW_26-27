@@ -3,7 +3,7 @@ package ed02_ejemplos_depuracion;
 import java.util.Scanner;
 
 /**
- * ED02_09_EdadYCarnet
+ * ED02_09_EdadYCarnet  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Evaluar condiciones compuestas (Alt+F8) con datos leídos de teclado.
@@ -16,24 +16,24 @@ import java.util.Scanner;
  *       menor de edad con carnet, menor de edad sin carnet.
  *
  * 2. ¿QUÉ HACE?
- *    Pruébalo con estos datos y anota los resultados:
- *       S y 20     N y 20     N y 16     S y 16
+ *    S y 20 -> mayor con carnet (bien)
+ *    N y 20 -> mayor con carnet (mal)
+ *    N y 16 -> mayor sin carnet (mal)
+ *    S y 16 -> mayor con carnet (mal)
  *
  * 3. HIPÓTESIS
- *    ¿Qué condición crees que se cumple cuando no debería?
+ *    Basta con que se cumpla UNA de las dos partes para entrar en el if.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en el primer if. Introduce N y 20, y cuando se pare
- *    evalúa con Alt+F8:
- *       edad >= 18
- *       carnet == 'S'
- *       edad >= 18 || carnet == 'S'
+ *    En el primer if, con N y 20.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué significa "||"? ¿Y "&&"? ¿Cuál necesitas aquí?
+ *    edad >= 18 -> true;  carnet == 'S' -> false;  con || -> true.
+ *    "||" (o) es cierto si se cumple alguna parte; "&&" (y) solo si se
+ *    cumplen las dos. Aquí hay que comprobar las dos cosas a la vez.
  *
  * 6. CORRECCIÓN
- *    ¿Qué cambias en las condiciones?
+ *    Cambiar || por && en las tres condiciones.
  *
  * @author jm
  */
@@ -49,11 +49,11 @@ public class ED02_09_EdadYCarnet {
         System.out.print("Introduce tu edad: ");
         int edad = teclado.nextInt();
 
-        if (edad >= 18 || carnet == 'S') {
+        if (edad >= 18 && carnet == 'S') {
             System.out.println("Eres mayor de edad y tienes carnet");
-        } else if (edad >= 18 || carnet == 'N') {
+        } else if (edad >= 18 && carnet == 'N') {
             System.out.println("Eres mayor de edad y no tienes carnet");
-        } else if (edad < 18 || carnet == 'S') {
+        } else if (edad < 18 && carnet == 'S') {
             System.out.println("Eres menor de edad y tienes carnet");
         } else {
             System.out.println("Eres menor de edad y no tienes carnet");

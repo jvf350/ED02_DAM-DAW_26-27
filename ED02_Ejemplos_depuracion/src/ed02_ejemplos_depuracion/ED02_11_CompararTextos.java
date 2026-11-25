@@ -3,7 +3,7 @@ package ed02_ejemplos_depuracion;
 import java.util.Scanner;
 
 /**
- * ED02_11_CompararTextos
+ * ED02_11_CompararTextos  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Evaluar expresiones (Alt+F8) para descubrir que dos textos
@@ -15,22 +15,21 @@ import java.util.Scanner;
  *    debe volver a saludar. Con "no" termina.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y responde "si". ¿Qué ocurre?
+ *    Aunque respondas "si", dice "¡Adiós!" y termina.
  *
  * 3. HIPÓTESIS
- *    ¿Por qué no se repite el saludo?
+ *    La comparación respuesta == "si" no funciona como esperamos.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea del while. Responde "si" y, cuando se pare,
- *    mira el valor de "respuesta" en el panel Variables y evalúa (Alt+F8):
- *       respuesta == "si"
- *       respuesta.equals("si")
+ *    En la línea del while.
  *
  * 5. ¿QUÉ OBSERVO?
- *    Si "respuesta" vale "si", ¿por qué la primera expresión da false?
+ *    "respuesta" vale "si", pero respuesta == "si" da false y
+ *    respuesta.equals("si") da true. Con objetos como String, "=="
+ *    compara si son el MISMO objeto en memoria, no si tienen el mismo texto.
  *
  * 6. CORRECCIÓN
- *    ¿Cómo se comparan dos String en Java?
+ *    Comparar con equals:  while (respuesta.equals("si"))
  *
  * @author jm
  */
@@ -45,7 +44,7 @@ public class ED02_11_CompararTextos {
             System.out.println("¡Hola!");
             System.out.print("¿Quieres que te salude otra vez? (si/no): ");
             respuesta = teclado.nextLine();
-        } while (respuesta == "si");
+        } while (respuesta.equals("si"));
 
         System.out.println("¡Adiós!");
         teclado.close();

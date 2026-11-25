@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_04_RecorrerArrayAlReves
+ * ED02_04_RecorrerArrayAlReves  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Comprobar el valor inicial de la variable de un bucle for
@@ -16,21 +16,21 @@ package ed02_ejemplos_depuracion;
  *    0: 3
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y lee el error de la consola. ¿Qué tipo de error es?
- *    ¿En qué línea se produce? (puedes hacer clic en el enlace azul).
+ *    No muestra nada y lanza ArrayIndexOutOfBoundsException:
+ *    "Index 5 out of bounds for length 5".
  *
  * 3. HIPÓTESIS
- *    ¿Qué posición intenta leer el programa? ¿Existe esa posición?
+ *    Intenta leer la posición 5, que no existe.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea 44 (System.out.println...).
+ *    En el println de dentro del for.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Cuánto vale "i" la primera vez que se para? ¿Y numeros.length?
- *    ¿Cuál es la última posición válida del array?
+ *    La primera vez "i" vale 5 y numeros.length también vale 5.
+ *    Las posiciones van de 0 a length - 1, es decir, de 0 a 4.
  *
  * 6. CORRECCIÓN
- *    ¿Con qué valor debe empezar "i"?
+ *    "i" debe empezar en numeros.length - 1.
  *
  * @author jm
  */
@@ -40,7 +40,7 @@ public class ED02_04_RecorrerArrayAlReves {
 
         int[] numeros = {3, -5, 0, 87, 0};
 
-        for (int i = numeros.length; i >= 0; i--) {
+        for (int i = numeros.length - 1; i >= 0; i--) {
             System.out.println(i + ": " + numeros[i]);
         }
     }

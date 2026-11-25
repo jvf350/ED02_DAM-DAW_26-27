@@ -1,7 +1,7 @@
 package ed02_ejemplos_depuracion;
 
 /**
- * ED02_13_Factorial
+ * ED02_13_Factorial  ·  SOLUCIÓN
  *
  * QUÉ PRACTICAS CON EL DEPURADOR
  *    Entrar en un método (Step Into, F7), salir de él (Step Out, Shift+F8)
@@ -11,22 +11,21 @@ package ed02_ejemplos_depuracion;
  *    Calcular el factorial de 5: 5! = 1 x 2 x 3 x 4 x 5 = 120.
  *
  * 2. ¿QUÉ HACE?
- *    Ejecútalo y anota el resultado.
+ *    Muestra "5! = 0".
  *
  * 3. HIPÓTESIS
- *    ¿En qué vuelta del bucle crees que se estropea el cálculo?
+ *    En alguna vuelta se multiplica por 0.
  *
  * 4. PUNTO DE INTERRUPCIÓN
- *    Pista: ponlo en la línea donde se llama a calcularFactorial(...)
- *    dentro del main. Cuando se pare, pulsa F7 para entrar en el método
- *    (con F8 lo ejecutarías entero sin entrar). Mira el panel Frames.
+ *    En la llamada a calcularFactorial(numero) del main, entrando con F7.
  *
  * 5. ¿QUÉ OBSERVO?
- *    ¿Qué métodos aparecen en Frames? ¿Qué valor tiene "n"?
- *    ¿Cuánto vale "factorial" después de la primera vuelta?
+ *    En Frames aparecen calcularFactorial encima de main: es la pila de
+ *    llamadas. "n" vale 5. En la primera vuelta i = 0, así que
+ *    factorial = 1 * 0 = 0, y a partir de ahí todo es 0.
  *
  * 6. CORRECCIÓN
- *    ¿Desde qué valor debe empezar "i"?
+ *    El bucle debe empezar en 1:  for (int i = 1; i <= n; i++)
  *
  * @author jm
  */
@@ -43,7 +42,7 @@ public class ED02_13_Factorial {
 
         int factorial = 1;
 
-        for (int i = 0; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             factorial = factorial * i;
         }
         return factorial;
