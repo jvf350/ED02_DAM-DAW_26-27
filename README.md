@@ -1,8 +1,4 @@
 # ED02 · Depuración de código en Java
-
-> **Rama `soluciones`**: aquí están los programas corregidos y, en el
-> comentario de cada uno, los seis pasos contestados.
-
 Programas Java sencillos **con errores** para aprender a depurar código
 con el depurador de IntelliJ IDEA.
 
@@ -13,12 +9,12 @@ IntelliJ con *File → Open* y, si te lo pide, elige un JDK en
 ## Cómo trabajar cada ejemplo
 
 Cada programa empieza con un comentario que sigue estos seis pasos.
-El primero ya está contestado; el resto lo completas tú:
+El primero ya está contestado; trata de razonar el resto de cuestiones antes de mirar las posibles soluciones.
 
 1. **¿Qué debería hacer?** Lo que se espera del programa.
 2. **¿Qué hace?** Ejecútalo y anota lo que ocurre de verdad.
 3. **Hipótesis.** ¿Por qué crees que falla?
-4. **Punto de interrupción.** ¿Dónde lo pones? Cada ejemplo trae una pista.
+4. **Punto/s de interrupción.** ¿Dónde se colocan? Cada ejemplo trae una pista.
 5. **¿Qué observo?** Valores de las variables, expresiones evaluadas…
 6. **Corrección.** ¿Qué cambias para que funcione?
 
@@ -67,10 +63,9 @@ Hazlos en orden: cada uno introduce algo nuevo del depurador.
 | Ver todos los puntos de interrupción | `Ctrl+Shift+F8` |
 | Parar | `Ctrl+F2` |
 
-En macOS los atajos cambian; consúltalos en *Help → Keyboard Shortcuts PDF*.
-
 ## Programas que leen de teclado
 
 `ED02_05_NombreAlReves`, `ED02_09_EdadYCarnet` y `ED02_11_CompararTextos`
 piden datos. Mientras depuras, escríbelos en la pestaña **Console** del panel
 de depuración y pulsa Intro.
+
